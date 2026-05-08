@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeff Young — Auto Damage Management Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: #1a1a1a;
+    background: #fff;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  .pf {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+  }
+
+  /* HEADER */
+  .hdr {
+    border-bottom: 2.5px solid #185FA5;
+    padding-bottom: 1.25rem;
+    margin-bottom: 2rem;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .hdr-name { font-size: 30px; font-weight: 600; letter-spacing: -.5px; color: #0f172a; }
+  .hdr-title { font-size: 13px; color: #64748b; margin-top: 4px; }
+  .hdr-contact { font-size: 13px; color: #185FA5; margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px 20px; }
+  .hdr-contact span { display: flex; align-items: center; gap: 5px; }
+  .hdr-tags { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .hdr-tag { font-size: 11.5px; font-weight: 500; color: #0C447C; background: #E6F1FB; border-radius: 4px; padding: 3px 9px; }
+
+  /* SECTIONS */
+  .sec { margin-bottom: 2rem; page-break-inside: avoid; break-inside: avoid; }
+  .sec-lbl {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: #185FA5; border-left: 3px solid #185FA5; padding-left: 9px; margin-bottom: 1rem;
+  }
+
+  /* EXEC SUMMARY */
+  .exec { font-size: 13.5px; line-height: 1.8; color: #1a1a1a; }
+
+  /* STAT GRID */
+  .stat-g {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .stat-c {
+    background: #f8fafc;
+    border: 0.5px solid #e2e8f0;
+    border-radius: 8px;
+    padding: .9rem;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .stat-n { font-size: 24px; font-weight: 600; color: #185FA5; line-height: 1.1; }
+  .stat-d { font-size: 11px; color: #64748b; margin-top: 4px; line-height: 1.4; }
+
+  /* PROOF TABLES */
+  .proof-wrap {
+    border: 0.5px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .proof-hdr {
+    background: #185FA5;
+    color: #fff;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .proof-hdr-title { font-size: 13px; font-weight: 500; }
+  .proof-hdr-sub { font-size: 11px; opacity: .8; }
+  .proof-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .proof-table th {
+    background: #f1f5f9; padding: 7px 12px; text-align: left;
+    font-weight: 600; font-size: 10px; letter-spacing: .8px;
+    text-transform: uppercase; color: #64748b;
+    border-bottom: 0.5px solid #e2e8f0;
+  }
+  .proof-table td {
+    padding: 8px 12px; border-bottom: 0.5px solid #f1f5f9;
+    vertical-align: middle; line-height: 1.4;
+  }
+  .proof-table tr:last-child td { border-bottom: none; }
+  .you { font-weight: 600; color: #185FA5; }
+  .badge-1 { background: #EAF3DE; color: #27500A; border-radius: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; }
+  .badge-hi { background: #E6F1FB; color: #0C447C; border-radius: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; }
+  .perfect { color: #27500A; font-weight: 600; }
+
+  /* PILLAR GRID */
+  .pillar-g {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .pillar {
+    background: #f8fafc;
+    border: 0.5px solid #e2e8f0;
+    border-radius: 8px;
+    padding: .9rem;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .pillar-t { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #185FA5; }
+  .pillar-d { font-size: 12px; color: #64748b; line-height: 1.5; }
+
+  /* STORY CARDS */
+  .sc {
+    border: 0.5px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: .85rem;
+    background: #fff;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .sc-hdr {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: .7rem;
+    gap: 10px;
+  }
+  .sc-title { font-size: 14px; font-weight: 600; color: #0f172a; }
+  .bdg { font-size: 10.5px; padding: 3px 9px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; font-weight: 500; }
+  .bdg-b { background: #E6F1FB; color: #0C447C; }
+  .bdg-g { background: #EAF3DE; color: #3B6D11; }
+  .bdg-a { background: #FAEEDA; color: #854F0B; }
+  .bdg-t { background: #E1F5EE; color: #0F6E56; }
+  .bdg-p { background: #EEEDFE; color: #3C3489; }
+
+  /* STAR ROWS */
+  .sr {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+    align-items: baseline;
+  }
+  .sl {
+    font-size: 10px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: normal;
+    word-break: break-word;
+    padding-top: 2px;
+  }
+  .st { font-size: 13px; color: #1a1a1a; line-height: 1.6; }
+  .rp {
+    display: inline-block;
+    background: #EAF3DE;
+    color: #27500A;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    margin-top: 4px;
+  }
+
+  /* 90-DAY */
+  .nd-g {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .nd {
+    background: #f8fafc;
+    border: 0.5px solid #e2e8f0;
+    border-radius: 8px;
+    padding: .9rem;
+    border-top: 3px solid #185FA5;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .nd-lbl { font-size: 10px; color: #185FA5; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .nd-t { font-size: 13px; font-weight: 600; margin: 4px 0; color: #0f172a; }
+  .nd-d { font-size: 12px; color: #64748b; line-height: 1.55; }
+
+  /* ACTION PLAN TABLE */
+  .ap-wrap { page-break-inside: avoid; break-inside: avoid; }
+  .ap-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .ap-table th {
+    background: #185FA5; color: #fff; padding: 8px 10px;
+    text-align: left; font-weight: 600; font-size: 10.5px; letter-spacing: .5px;
+  }
+  .ap-table td {
+    padding: 7px 10px; border-bottom: 0.5px solid #e2e8f0;
+    vertical-align: top; line-height: 1.5;
+  }
+  .ap-table tr { page-break-inside: avoid; break-inside: avoid; }
+  .ap-table tr:last-child td { border-bottom: none; }
+  .ap-table tr:nth-child(even) td { background: #f8fafc; }
+  .ph { color: #A32D2D; font-weight: 600; }
+  .pm { color: #854F0B; font-weight: 600; }
+  .ps { color: #3B6D11; font-weight: 600; }
+
+  hr.div { border: none; border-top: 0.5px solid #e2e8f0; margin: 1.5rem 0; }
+
+  .ftr {
+    font-size: 11px; color: #94a3b8;
+    border-top: 0.5px solid #e2e8f0;
+    padding-top: .75rem; margin-top: 1.5rem;
+    display: flex; justify-content: space-between;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pf { padding: 1rem; }
+    .sc, .sec, .proof-wrap, .stat-g, .pillar-g, .nd-g, .ap-wrap, .hdr { page-break-inside: avoid; break-inside: avoid; }
+    .ap-table tr { page-break-inside: avoid; break-inside: avoid; }
+    .proof-hdr, .ap-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="pf">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-name">Jeff Young</div>
+    <div class="hdr-title">Auto Damage Claims Manager &nbsp;&middot;&nbsp; Virtual Operations Architect &nbsp;&middot;&nbsp; Multi-State Leader (TX &middot; CA &middot; OK)</div>
+    <div class="hdr-contact">
+      <span>&#128205; Angleton, TX</span>
+      <span>&#128222; 859-539-8033</span>
+      <span>&#9993; jeffyoung08@ymail.com</span>
+    </div>
+    <div class="hdr-tags">
+      <span class="hdr-tag">3&times; #1 Company-Wide Ranked Team</span>
+      <span class="hdr-tag">20+ Years Auto Industry Experience</span>
+      <span class="hdr-tag">TX All Lines Adjuster &middot; I-CAR Platinum Pro L3</span>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="sec">
+    <div class="sec-lbl">Executive Summary</div>
+    <p class="exec">Results-driven Auto Damage leader with over 20 years of experience spanning field operations, virtual team architecture, and multi-state management across Texas, California, and Oklahoma. Known for translating technical mastery into scalable team cultures &mdash; building programs from the ground up, coaching supervisors to interpret data rather than react to it, and consistently delivering top-ranked performance in productivity, member satisfaction, and compliance. Brought 22 associates along when launching a new assign type from scratch, and led that team to a #1 company-wide ranking maintained for three consecutive years. Equally comfortable operating across organizational boundaries &mdash; working collaboratively with DRP partners and enterprise vendors to diagnose root causes and build shared accountability systems. Core strengths: behavioral-based coaching, leakage control, change management, vendor stewardship, and operational excellence across $25M+ monthly indemnity volume.</p>
+  </div>
+
+  <!-- KEY STATS -->
+  <div class="sec">
+    <div class="sec-lbl">Career Highlights at a Glance</div>
+    <div class="stat-g">
+      <div class="stat-c"><div class="stat-n">3</div><div class="stat-d">Consecutive years ranked #1 company-wide in compliance, accuracy &amp; CSS</div></div>
+      <div class="stat-c"><div class="stat-n">#1 TX</div><div class="stat-d">Statewide CSS ranking achieved as Field Manager, Houston market</div></div>
+      <div class="stat-c"><div class="stat-n">22</div><div class="stat-d">Associates who voluntarily followed into the newly launched Virtual Supplement Team</div></div>
+      <div class="stat-c"><div class="stat-n">1 of 6</div><div class="stat-d">Supervisors company-wide to pass the Home Office Audit across all three assign types</div></div>
+      <div class="stat-c"><div class="stat-n">$25M+</div><div class="stat-d">Monthly indemnity volume managed across TX, CA, and OK</div></div>
+      <div class="stat-c"><div class="stat-n">42</div><div class="stat-d">Associates at peak team size, including supervisors and adjusters</div></div>
+    </div>
+  </div>
+
+  <!-- PROOF OF PERFORMANCE -->
+  <div class="sec">
+    <div class="sec-lbl">Proof of Performance &mdash; GEICO VST Rankings</div>
+
+    <div class="proof-wrap">
+      <div class="proof-hdr">
+        <div class="proof-hdr-title">Manager Performance Ranking Report &mdash; 2023 &amp; 2024 Combined</div>
+        <div class="proof-hdr-sub">Physical Damage &middot; VST &middot; All GEICO</div>
+      </div>
+      <table class="proof-table">
+        <thead>
+          <tr>
+            <th>Manager</th><th>Overall Rank</th><th>Percentile</th><th>Productivity</th>
+            <th>Prod. Rank</th><th>REI Pass %</th><th>REI Rank</th><th>Survey</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="you">Young, Jeff &#9733;</td>
+            <td><span class="badge-1">#1</span></td>
+            <td class="perfect">100%</td>
+            <td>781,843.86</td>
+            <td><span class="badge-1">#1</span></td>
+            <td class="perfect">100% (70/70)</td>
+            <td><span class="badge-1">#1</span></td>
+            <td class="you">104.60</td>
+          </tr>
+          <tr><td>Spell, Travion</td><td>#2</td><td>80%</td><td>655,106.32</td><td>#3</td><td>97.06% (66/68)</td><td>#2</td><td>104.01</td></tr>
+          <tr><td>Shadoan, Don</td><td>#4</td><td>40%</td><td>518,661.30</td><td>#5</td><td>94.12% (64/68)</td><td>#3</td><td>89.69</td></tr>
+          <tr><td>Nelson, Erik</td><td>#5</td><td>20%</td><td>593,829.16</td><td>#4</td><td>93.65% (59/63)</td><td>#4</td><td>96.94</td></tr>
+          <tr><td>Lockwood, Steven</td><td>#3</td><td>60%</td><td>766,559.10</td><td>#2</td><td>82.86% (58/70)</td><td>#5</td><td>92.17</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="proof-wrap">
+      <div class="proof-hdr">
+        <div class="proof-hdr-title">Auto Damage Performance Dashboard &mdash; 2025 (Jan 1 &ndash; Nov 11)</div>
+        <div class="proof-hdr-sub">Physical Damage &middot; VST &middot; All GEICO</div>
+      </div>
+      <table class="proof-table">
+        <thead>
+          <tr><th>Manager</th><th>Hours Worked</th><th>Prod. Score</th><th>Productivity</th><th>REI Score</th><th>REI Adequacy</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="you">Young, Jeff &#9733;</td><td>30,892.81</td><td>5</td>
+            <td class="you">8.62</td><td>4</td>
+            <td class="perfect">98.38% <span class="badge-hi">Highest</span></td>
+          </tr>
+          <tr><td>Spell, Travion</td><td>43,623.24</td><td>5</td><td>8.34</td><td>4</td><td>98.17%</td></tr>
+          <tr><td>Nelson, Erik</td><td>39,339.16</td><td>5</td><td>8.34</td><td>4</td><td>97.47%</td></tr>
+          <tr><td>Lockwood, Steven</td><td>45,765.33</td><td>5</td><td>8.20</td><td>4</td><td>98.03%</td></tr>
+          <tr><td>Strom, Kyle</td><td>47,010.84</td><td>5</td><td>6.85</td><td>4</td><td>97.19%</td></tr>
+          <tr><td>Shadoan, Don</td><td>39,133.09</td><td>5</td><td>7.88</td><td>4</td><td>98.10%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:#94a3b8;margin-top:6px;font-style:italic">Note: 2025 data reflects period ending 11/11/2025. Jeff Young holds the highest Reinspection Adequacy (98.38%) and highest Productivity score (8.62) across all VST managers.</p>
+  </div>
+
+  <hr class="div">
+
+  <!-- PHILOSOPHY -->
+  <div class="sec">
+    <div class="sec-lbl">Leadership Philosophy</div>
+    <div class="pillar-g">
+      <div class="pillar">
+        <div class="pillar-t">Systemic accountability</div>
+        <div class="pillar-d">Moving beyond managing metrics to coaching the specific behaviors that drive them.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-t">Technical-first mindset</div>
+        <div class="pillar-d">20+ years of mechanical expertise underpins every accuracy and compliance decision.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-t">Empowered culture</div>
+        <div class="pillar-d">Every team member becomes a steward of the mission, not just a processor of claims.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- CUSTOMER SERVICE -->
+  <div class="sec">
+    <div class="sec-lbl">Member &amp; Customer Experience</div>
+    <div class="sc">
+      <div class="sc-hdr"><div class="sc-title">CSS redesign: Houston market &rarr; #1 in Texas</div><div class="bdg bdg-b">Customer Satisfaction</div></div>
+      <div class="sr"><div class="sl">Situation</div><div class="st">As Field Manager in Houston, CSS scores led the city but hadn&rsquo;t reached their ceiling. An audit of member feedback found the gap wasn&rsquo;t repair quality &mdash; it was a communication breakdown at the first adjuster call.</div></div>
+      <div class="sr"><div class="sl">Action</div><div class="st">Led a three-part service redesign: created a &ldquo;What Now&rdquo; guide giving members a clear repair timeline; implemented mandatory milestone touchpoints so members never had to call for an update; coached adjusters on empathetic talking points tailored to members in crisis.</div></div>
+      <div class="sr"><div class="sl">Result</div><div class="st"><span class="rp">#1 in Texas for CSS</span> &mdash; plus a measurable drop in inbound inquiry volume, freeing adjusters for quality inspections.</div></div>
+    </div>
+  </div>
+
+  <!-- COMPLIANCE -->
+  <div class="sec">
+    <div class="sec-lbl">Compliance &amp; Financial Stewardship</div>
+    <div class="sc">
+      <div class="sc-hdr"><div class="sc-title">Live review protocol: shifting from correction to prevention</div><div class="bdg bdg-g">Leakage Control</div></div>
+      <div class="sr"><div class="sl">Situation</div><div class="st">After taking over TX, CA, and OK virtual supplements, re-inspections were catching overwrites after payment had already issued &mdash; creating significant leakage risk and dragging compliance rankings.</div></div>
+      <div class="sr"><div class="sl">Action</div><div class="st">Implemented a two-pronged prevention model: each supervisor performed 20 &ldquo;live reviews&rdquo; per week &mdash; red-lining supplements with adjusters before the file was locked or paid &mdash; and data from those reviews fed directly into weekly coaching calibration sessions.</div></div>
+      <div class="sr"><div class="sl">Result</div><div class="st"><span class="rp">#1 company-wide for compliance &amp; accuracy</span> &mdash; significant reduction in lost cost spend across three markets.</div></div>
+    </div>
+    <div class="sc">
+      <div class="sc-hdr"><div class="sc-title">Paint invoice standard: stopping manufactured overcharges in California</div><div class="bdg bdg-g">Indemnity Protection</div></div>
+      <div class="sr"><div class="sl">Situation</div><div class="st">When launching the virtual supplement team in California, observed field management approving shop paint invoices generated through third-party services (e.g., EagleMMS). The invoices were manufactured &mdash; not independently verifiable &mdash; and were being approved largely out of fear of DOI complaints, leading to significant systemic overpayment.</div></div>
+      <div class="sr"><div class="sl">Action</div><div class="st">Rather than unilaterally stopping payments, worked with GEICO Legal to build a defensible position. Received approval to implement a new standard: payment only for verifiable materials. If the shop could not substantiate every line item, the company reverted to industry-standard paint calculation based on hours &mdash; not the proprietary invoice. Coached the team to hold that line professionally while preserving shop relationships.</div></div>
+      <div class="sr"><div class="sl">Result</div><div class="st"><span class="rp">Major reduction in material overpayment &mdash; CA market</span> &mdash; legally defensible, repeatable standard protecting indemnity spend without triggering DOI exposure.</div></div>
+    </div>
+  </div>
+
+  <!-- VENDOR & PARTNER STEWARDSHIP — NEW SECTION -->
+  <div class="sec">
+    <div class="sec-lbl">Vendor &amp; Partner Stewardship</div>
+
+    <div class="sc">
+      <div class="sc-hdr"><div class="sc-title">DRP onboarding: diagnosing a cycle time gap through process analysis</div><div class="bdg bdg-p">DRP Partner Development</div></div>
+      <div class="sr"><div class="sl">Situation</div><div class="st">After opening a new DRP shop, data showed their cycle time was running a full day longer than comparable shops in the network. The performance gap was clear in the numbers &mdash; the root cause was not.</div></div>
+      <div class="sr"><div class="sl">Action</div><div class="st">Rather than presenting the data as a performance warning, met with the shop manager to work through it collaboratively. The conversation surfaced two distinct issues: (1) their intake process held all vehicles until a single designated technician ran pre-scans once per day, while higher-performing shops were scanning at the moment of customer drop-off &mdash; an immediate, recoverable delay built into their workflow; (2) upon reflection, recognized that while the performance metrics had been shared during onboarding, they had not been clearly explained &mdash; a communication gap on my part. Took ownership of that directly, walked through every key metric with the full shop team, and confirmed alignment before leaving.</div></div>
+      <div class="sr"><div class="sl">Result</div><div class="st"><span class="rp">Cycle time gap closed within 30 days</span> &mdash; shop realigned their intake sequence with network best practice and came into full performance alignment.</div></div>
+    </div>
+
+    <div class="sc">
+      <div class="sc-hdr"><div class="sc-title">Copart transition: building a shared escalation system to close regional release time gaps</div><div class="bdg bdg-p">Enterprise Vendor Management</div></div>
+      <div class="sr"><div class="sl">Situation</div><div class="st">Following GEICO&rsquo;s transition from IAA to Copart, overall vehicle retrieval times improved &mdash; but data revealed a significant inconsistency: certain areas of Houston were showing substantially longer release times than others. The problem wasn&rsquo;t the vendor relationship at the top level; it was a gap in how individual adjusters were responding to Copart&rsquo;s release requests, with some managing follow-ups well and others not at all.</div></div>
+      <div class="sr"><div class="sl">Action</div><div class="st">Met with Copart&rsquo;s representative, Josh Speck, to analyze the release time data together and design a solution jointly rather than issuing a directive. Built a two-part system: (1) a structured escalation protocol where Copart&rsquo;s standard adjuster contact (message + call) was supplemented by automatic supervisor notification after 2 days of no response, escalating further to the manager at 5 days &mdash; ensuring no release request could stall unnoticed regardless of individual adjuster follow-through; (2) authorized Copart a pre-approved spend threshold to cover pickup charges independently, removing a bottleneck that was causing delays when coordination was slow.</div></div>
+      <div class="sr"><div class="sl">Result</div><div class="st"><span class="rp">Release times aligned across all Houston areas within 45 days</span> &mdash; the escalation architecture removed individual variability from the process, and the spend authorization empowered Copart to act without waiting for adjuster response on routine pickups.</div></div>
+    </div>
+  </div>
+
+  <!-- DATA -->
+  <div class="sec">
+    <div class="sec-lbl">Data-Driven Decisions</div>
+    <div class="sc">
+      <div class="sc-hdr"><div class="sc-title">Identifying a productivity-quality gap through Tableau performance data</div><div class="bdg bdg-a">Operational Bottleneck</div></div>
+      <div class="sr"><div class="sl">Situation</div><div class="st">In late 2024, performance data revealed a 1st-quartile-productivity supervisor consistently landing in the 3rd quartile for re-inspection accuracy. The data said something in his process was broken &mdash; not his effort.</div></div>
+      <div class="sr"><div class="sl">Action</div><div class="st">Conducted a process audit &mdash; observed the supervisor&rsquo;s actual workflow. Root cause: no standardized sequence. Interruptions caused him to lose his place and miss checklist items. Collaborated to build a Standardized REI Checklist Protocol, then deployed it as a team-wide best practice.</div></div>
+      <div class="sr"><div class="sl">Result</div><div class="st"><span class="rp">Q1 2025: moved from 3rd &rarr; 1st quartile in both productivity and REI accuracy</span> &mdash; the protocol became a compliance anchor for the entire team.</div></div>
+    </div>
+  </div>
+
+  <!-- CHANGE MANAGEMENT -->
+  <div class="sec">
+    <div class="sec-lbl">Change Management &amp; Innovation</div>
+    <div class="sc">
+      <div class="sc-hdr"><div class="sc-title">Building the Virtual Supplement Team from zero</div><div class="bdg bdg-t">Organizational Change</div></div>
+      <div class="sr"><div class="sl">Situation</div><div class="st">Three years ago, was asked to design and launch a brand-new assign type &mdash; the Virtual Supplement Team for TX, CA, and OK. No playbook. No existing infrastructure. A significant shift from the field-based model the organization had always known.</div></div>
+      <div class="sr"><div class="sl">Action</div><div class="st">Used the ADKAR model to drive buy-in: shared data on why the virtual model would accelerate service; gave the team two months to map the field-to-virtual workflow gap; ran &ldquo;mock days in the life&rdquo; to build confidence before launch; established a daily data feedback loop. 22 associates voluntarily moved into the new department &mdash; maintaining cultural continuity through the ambiguity.</div></div>
+      <div class="sr"><div class="sl">Result</div><div class="st"><span class="rp">#1 company-wide &mdash; three consecutive years</span> &mdash; what started as an unknown became the organization&rsquo;s benchmark program.</div></div>
+    </div>
+  </div>
+
+  <!-- TALENT -->
+  <div class="sec">
+    <div class="sec-lbl">Talent Development &amp; Culture</div>
+    <div class="sc">
+      <div class="sc-hdr"><div class="sc-title">Turning a critic into a problem-solver through behavioral coaching</div><div class="bdg bdg-b">Difficult Feedback</div></div>
+      <div class="sr"><div class="sl">Situation</div><div class="st">A supervisor was consistently displaying complaint-driven behavior during leadership calls &mdash; critiquing new processes without alternatives, dragging team morale and meeting quality.</div></div>
+      <div class="sr"><div class="sl">Action</div><div class="st">Scheduled a direct 1-on-1 using behavioral-based coaching rather than accusation. Asked: &ldquo;How do you feel your comments impacted the call?&rdquo; The conversation uncovered the root cause &mdash; time management overwhelm. Responded on two fronts: collaborated on workload strategies to reduce stress, and set a clear meeting standard: every critique must be accompanied by at least one &ldquo;art of the possible&rdquo; solution.</div></div>
+      <div class="sr"><div class="sl">Result</div><div class="st"><span class="rp">He became a lead voice in innovation sessions</span> &mdash; and the leadership team aligned on a single forward-looking communication standard.</div></div>
+    </div>
+    <div class="sc">
+      <div class="sc-hdr"><div class="sc-title">Talent selection framework</div><div class="bdg bdg-b">Team Building</div></div>
+      <div class="sr"><div class="sl">Coachability</div><div class="st">First filter: growth mindset. Candidates who see a file audit as a roadmap, not a critique. Technical skills can be trained &mdash; openness to feedback cannot.</div></div>
+      <div class="sr"><div class="sl">Mission fit</div><div class="st">Second filter: service heart. Does this person see a claim as a transaction, or as a member in crisis who needs an advocate?</div></div>
+      <div class="sr"><div class="sl">Agility</div><div class="st">Third filter: logical agility under pressure. Behavioral questions reveal how candidates handle conflicting data &mdash; shop estimate vs. market data &mdash; while staying objective and professionally composed.</div></div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- 90-DAY -->
+  <div class="sec">
+    <div class="sec-lbl">90-Day Leadership Approach</div>
+    <div class="nd-g">
+      <div class="nd">
+        <div class="nd-lbl">Days 1&ndash;30</div>
+        <div class="nd-t">Listen, learn &amp; audit</div>
+        <div class="nd-d">Understand the current state of people, processes, and data. Build trust before changing anything. Identify the gaps between performance and potential.</div>
+      </div>
+      <div class="nd">
+        <div class="nd-lbl">Days 31&ndash;60</div>
+        <div class="nd-t">Process &amp; buy-in</div>
+        <div class="nd-d">Apply ADKAR. Design improvements collaboratively. Establish behavioral coaching frameworks and shared data visibility across the team.</div>
+      </div>
+      <div class="nd">
+        <div class="nd-lbl">Days 61&ndash;90</div>
+        <div class="nd-t">Scale &amp; sustain</div>
+        <div class="nd-d">Build feedback loops that make performance self-correcting. Transition from &ldquo;manager present&rdquo; to &ldquo;culture present.&rdquo; Target measurable ranking movement.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- ACTION PLAN -->
+  <div class="sec">
+    <div class="sec-lbl">Appendix &mdash; Sample Action Plan Format</div>
+    <p style="font-size:12px;color:#64748b;margin-bottom:.75rem">Structured coaching and accountability framework developed and deployed across the Virtual Supplement Team. Action plans are living documents &mdash; reviewed weekly, tied to specific behavioral observations, and measured against quantifiable outcomes.</p>
+    <div class="ap-wrap">
+      <table class="ap-table">
+        <thead>
+          <tr>
+            <th style="width:13%">Category</th>
+            <th style="width:24%">Observation</th>
+            <th style="width:31%">Action Steps</th>
+            <th style="width:14%">Owner</th>
+            <th style="width:10%">Due</th>
+            <th style="width:8%">Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>REI Accuracy</td><td>Supervisor in 1st quartile productivity / 3rd quartile REI &mdash; process gap, not effort gap</td><td>Joint process audit; co-develop standardized REI checklist; deploy as team-wide best practice</td><td>Manager + Supervisor</td><td>30 days</td><td class="ph">High</td></tr>
+          <tr><td>Leakage Prevention</td><td>Overwrites caught post-payment via re-inspection cycle</td><td>Launch live review protocol (20/week per supervisor); feed findings into weekly calibration coaching</td><td>All Supervisors</td><td>Immediate</td><td class="ph">High</td></tr>
+          <tr><td>Member Communication</td><td>CSS sub-scores below ceiling; inbound call volume elevated</td><td>Deploy &ldquo;What Now&rdquo; guide; mandate milestone touchpoints; empathy coaching on talking points</td><td>Manager + Team</td><td>60 days</td><td class="pm">Medium</td></tr>
+          <tr><td>Leadership Culture</td><td>Negative posture in leadership meetings; critique without solution</td><td>Behavioral 1-on-1; establish meeting standard &mdash; every critique requires one &ldquo;art of the possible&rdquo; solution</td><td>Manager</td><td>14 days</td><td class="pm">Medium</td></tr>
+          <tr><td>Data Alignment</td><td>Geographic team drift; inconsistent performance interpretation across regions</td><td>Shared Tableau dashboard; standardize behavioral coaching framework across all locations</td><td>Manager</td><td>45 days</td><td class="ps">Standard</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <span>Jeff Young &nbsp;&middot;&nbsp; Auto Damage Management Portfolio &nbsp;&middot;&nbsp; Confidential</span>
+    <span>859-539-8033 &nbsp;&middot;&nbsp; jeffyoung08@ymail.com</span>
+  </div>
+
+</div>
+</body>
+</html>
